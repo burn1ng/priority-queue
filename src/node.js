@@ -10,8 +10,6 @@ class Node {
 	appendChild(node) {
 		if (this.left === null || this.right === null) {
 
-			this.node = node;
-
 			if (this.left === null) {
 				this.left = node;
 			} else {
@@ -21,11 +19,19 @@ class Node {
 	}
 
 	removeChild(node) {
-
+		if (node === this.left) {
+			this.left = null;
+			node.parent = null;
+		} else if(node === this.right) {
+			this.right = null;
+			node.parent = null;
+		} else {
+			throw new Error('passed node is not a child of this node');
+		}
 	}
 
 	remove() {
-
+		
 	}
 
 	swapWithParent() {
