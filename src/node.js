@@ -8,13 +8,16 @@ class Node {
 	}
 
 	appendChild(node) {
-		if (this.left === null || this.right === null) {
-
-			if (this.left === null) {
-				this.left = node;
-			} else {
-				this.right = node; 
-			}
+		if (this.left !== null && this.right !== null) {
+			return;
+		}
+		if (this.left === null && this.right === null) {
+			this.left = node;
+			this.right = null;
+			node.parent = this; // not in tests
+		} else if (this.left !== null && this.right === null) {
+			this.right = null;
+			node.parent = this; // not in tests
 		}
 	}
 
