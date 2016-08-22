@@ -22,11 +22,11 @@ class Node {
 		if (node === this.left) {
 			this.left = null;
 			node.parent = null;
-		} else if(node === this.right) {
+		} else if (node === this.right) {
 			this.right = null;
 			node.parent = null;
 		} else {
-			throw new Error('passed node is not a child of this node');
+			throw new Error("passed node is not a child of this node");
 		}
 	}
 
