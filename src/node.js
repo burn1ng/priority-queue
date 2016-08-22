@@ -13,11 +13,10 @@ class Node {
 		}
 		if (this.left === null && this.right === null) {
 			this.left = node;
-			this.right = null;
-			node.parent = this; // not in tests
+			node.parent = this;
 		} else if (this.left !== null && this.right === null) {
-			this.right = null;
-			node.parent = this; // not in tests
+			this.right = node;
+			node.parent = this;
 		}
 	}
 
