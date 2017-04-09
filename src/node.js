@@ -50,30 +50,39 @@ class Node {
 
 	swapWithParent() {
 		if (this.parent === null) {return;}
-		let childLeft = this.left;
-		let childRight = this.right;
-		let parent = this.parent;
-		let parentParent = parent.parent;
-		let sibling;
-		let thisLeft = false;
-
+		var childLeft = this.left;
+		var childRight = this.right;
+		var parent = this.parent;
+		var parentParent = parent.parent;
+		var sibling;
+		var thisLeft = false;
+	
+		if (parentParent !== null) {
+			if (parent.parent.left === parent) {
+				parentParent.left = this;
+			} else {
+				parentParent.right = this;
+			}
+		}
 		if (parent.left === this) {
 			sibling = parent.right;
 			thisLeft = true;
 		} else {
 			sibling = parent.left;
 		}
-
-	
+		if (sibling !== null) {
+			sibling.parent = this;
+		}
+		if (childLeft !== null) {
+			childLeft.parent = parent;
+		}
+		if (childRight !== null) {
+			childRight.parent = parent;
+		}
 		parent.left = childLeft;
 		parent.right = childRight;
-		childRight.parent = parent;
-		childLeft.parent = parent;
-		sibling.parent = this;
-
 		parent.parent = this;
 		this.parent = parentParent;
-		
 		if (thisLeft) {
 			this.left = parent;
 			this.right = sibling;
